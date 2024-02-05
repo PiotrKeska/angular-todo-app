@@ -1,0 +1,33 @@
+<li class="list-group-item">
+  <input
+    type="checkbox"
+    class="form-checkinput my-1"
+    [checked]="todo.isComplete"
+    (change)="changeTodoStatus(todo)"
+  />
+  <span
+    class="todo-item"
+    [ngClass]="{ 'text-decoration-line-through': todo.isComplete }"
+    >{{ i + 1 }}. {{ todo.name }}</span
+  >
+  <button
+    type="button"
+    class="btn btn-danger btn-sm mx-2"
+    (click)="toggleModal()"
+  >
+    Usuń
+  </button>
+</li>
+
+<app-modal
+  *ngIf="openModal"
+  (close)="toggleModal()"
+  [title]="'Czy na pewno chesz usunąć to zadanie?'"
+>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()">
+      Usuń
+    </button>
+    <button class="btn btn-info btn-sm" (click)="toggleModal()">Anuluj</button>
+  </div>
+</app-modal>
